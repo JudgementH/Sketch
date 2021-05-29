@@ -1,11 +1,57 @@
 <template>
-$END$
+    <div>
+        <v-app-bar
+                app
+                color="blue"
+                dense
+        >
+
+            <v-toolbar-title>Sketch Master</v-toolbar-title>
+
+            <v-spacer></v-spacer>
+
+<!--            <v-btn icon>-->
+<!--                <v-icon>mdi-heart</v-icon>-->
+<!--            </v-btn>-->
+            <v-menu
+                    open-on-hover
+                    offset-y
+                    bottom
+                    transition="slide-y-transition"
+            >
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                            icon
+                            v-bind="attrs"
+                            v-on="on"
+                    >
+                        <v-icon>mdi-dots-vertical</v-icon>
+                    </v-btn>
+                </template>
+
+                <v-list>
+                    <v-list-item
+                            v-for="(item, index) in lists"
+                            :key="index"
+                    >
+                        <v-list-item-title>{{ item }}</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
+        </v-app-bar>
+
+    </div>
 </template>
 
 <script>
-export default {
-name: "Bar"
-}
+    export default {
+        name: "Nav",
+        data: () => ({
+            lists: [
+                'Judgement',
+            ],
+        }),
+    }
 </script>
 
 <style scoped>
